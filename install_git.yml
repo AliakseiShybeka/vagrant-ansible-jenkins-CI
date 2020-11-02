@@ -1,0 +1,17 @@
+---
+
+- name: "Create repo file for yum fot Git installing"
+  copy:
+    src: ./wandisco-git.repo
+    dest: /etc/yum.repos.d/
+- name: "Add Git repo GPG key"
+  rpm_key:
+    state: present
+    key: http://opensource.wandisco.com/RPM-GPG-KEY-WANdisco
+- name: "Install Git"
+  yum:
+    name: git
+    state: latest
+
+ 
+

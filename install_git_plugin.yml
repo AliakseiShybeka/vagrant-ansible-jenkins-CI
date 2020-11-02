@@ -1,0 +1,26 @@
+---
+- name: Download CLI jar
+  get_url: 
+     url:  "http://127.0.0.1:8080/jnlpJars/jenkins-cli.jar"
+     dest: "/opt/jenkins-cli.jar"
+ 
+
+- name: Install Plugin greenballs
+  shell: "java -jar /opt/jenkins-cli.jar -s http://127.0.0.1:8080/  -auth admin:admin install-plugin greenballs"
+
+- name: Install Plugin chucknorris
+  shell: "java -jar /opt/jenkins-cli.jar -s http://127.0.0.1:8080/  -auth admin:admin install-plugin chucknorris"
+
+- name: Install Plugin PMD
+  shell: "java -jar /opt/jenkins-cli.jar -s http://127.0.0.1:8080/  -auth admin:admin install-plugin pmd"  
+
+- name: Install Plugin Checkstyle
+  shell: "java -jar /opt/jenkins-cli.jar -s http://127.0.0.1:8080/  -auth admin:admin install-plugin checkstyle"  
+
+
+- name: Install Plugin configuration-as-code 
+  shell: "java -jar /opt/jenkins-cli.jar -s http://127.0.0.1:8080/  -auth admin:admin install-plugin configuration-as-code"  
+
+
+- name: Install Plugin Git
+  shell: "java -jar /opt/jenkins-cli.jar -s http://127.0.0.1:8080/  -auth admin:admin install-plugin git  -restart "

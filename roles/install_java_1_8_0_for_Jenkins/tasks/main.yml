@@ -1,0 +1,58 @@
+---
+# tasks file for install_java_1_8_0_for_Jenkins
+
+
+ #  <=============== Block-for-RedHat ==============================>
+- block:                                                            #
+    - name: Yum Upgrade all packages                                #
+      yum:                                                        #
+        name: '*'
+        state: 'latest'
+
+    - name: install java-1.8.0-openjdk-devel
+      yum: 
+        name: "java-1.8.0-openjdk-devel"
+        state: 'latest'
+
+    - name: "Include install_git.yml"
+      include: install_git.yml 
+        
+    - name: "Include install_maven.yml"
+      include: install_maven.yml
+        
+    # - name: "Include install_git_plugin"
+    #   include: install_git_plugin.yml
+
+
+    - name: Just force systemd to reread configs 
+      systemd:
+        daemon_reload: yes
+
+  when: ansible_os_family == "RedHat"
+#  <=============== End -of-Block-for-RedHat =======================>
+
+#  <--------------- Block-for-DEBIAN ------------------------------->
+- block:                                                            #
+    - name: apt-get update                                #
+      apt:                                                        #
+        update_cache: yes  
+    - name: apt-get upgrade
+      apt: 
+        name: "*"
+        state: 'latest'
+        force_apt_get: true
+
+    - name: install openjdk-8-jdk
+      apt:
+        name: "default-jdk"
+        state: 'latest'
+    
+    
+    - name: Just force systemd to reread configs 
+      systemd:
+        daemon_reload: yes
+
+  when: ansible_os_family == "Debian"
+#  <-------------- End -of-Block-for-DEBIAN ---------------->
+
+
