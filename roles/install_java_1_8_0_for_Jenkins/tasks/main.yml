@@ -1,6 +1,8 @@
 ---
-# tasks file for install_java_1_8_0_for_Jenkins
+# tasks file for install_some_dependencies_for_Jenkins
 
+  #  - name: "Include install_maven.yml"
+  #    include: install_maven.yml
 
  #  <=============== Block-for-RedHat ==============================>
 - block:                                                            #
@@ -16,9 +18,10 @@
 
     - name: "Include install_git.yml"
       include: install_git.yml 
-        
+    
     - name: "Include install_maven.yml"
-      include: install_maven.yml
+      include: install_maven.yml  
+ 
         
     # - name: "Include install_git_plugin"
     #   include: install_git_plugin.yml
@@ -46,6 +49,9 @@
       apt:
         name: "default-jdk"
         state: 'latest'
+    
+    
+          
     
     
     - name: Just force systemd to reread configs 

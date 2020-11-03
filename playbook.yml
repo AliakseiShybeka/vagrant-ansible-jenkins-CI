@@ -14,5 +14,5 @@
   #  - name: "Include install_maven.yml"
   #    include: install_maven.yml
   
-   - name: "Include install_git_plugin"
-     include: install_git_plugin.yml
+   - name: "Include install_jenkins_plugins"
+     include: install_jenkins_plugins.yml
