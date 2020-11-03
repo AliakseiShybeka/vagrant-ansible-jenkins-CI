@@ -31,10 +31,10 @@ Vagrant.configure("2") do |config|
   #    db.vm.network :private_network, ip: "192.168.60.6"
   #  end
 
-    # # Provision configuration for Ansible
-    # config.vm.provision  :ansible do |ansible|
-    #   ansible.playbook = "playbook.yml"
-    #   ansible.become = true
-    #  end 
+    # Provision configuration for Ansible
+    config.vm.provision  :ansible do |ansible|
+      ansible.playbook = "playbook.yml"
+      ansible.become = true
+     end 
 
 end
