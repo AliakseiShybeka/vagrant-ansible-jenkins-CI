@@ -11,11 +11,19 @@
 - name: Install Plugin chucknorris
   shell: "java -jar /opt/jenkins-cli.jar -s http://127.0.0.1:8080/  -auth admin:admin install-plugin chucknorris"
 
-- name: Install Plugin PMD
-  shell: "java -jar /opt/jenkins-cli.jar -s http://127.0.0.1:8080/  -auth admin:admin install-plugin pmd"  
 
-- name: Install Plugin Checkstyle
-  shell: "java -jar /opt/jenkins-cli.jar -s http://127.0.0.1:8080/  -auth admin:admin install-plugin checkstyle"  
+- name: "Copying a file for maven settings"
+  copy:
+    src: ./hudson.tasks.Maven.xml
+    dest: /var/lib/jenkins/
+
+- name: "Copying a file for jenkins URL settings"
+  copy:
+    src: ./jenkins.model.JenkinsLocationConfiguration.xml
+    dest: /var/lib/jenkins/
+
+- name: Install Plugin Warnings Next Generation
+  shell: "java -jar /opt/jenkins-cli.jar -s http://127.0.0.1:8080/  -auth admin:admin install-plugin warnings-ng"
 
 
 - name: Install Plugin configuration-as-code 
@@ -29,6 +37,9 @@
   copy:
     src: ./hudson.tasks.Maven.xml
     dest: /var/lib/jenkins/
+
+
+
 
 - name: Wait for Jenkins to start up before proceeding.
   uri:

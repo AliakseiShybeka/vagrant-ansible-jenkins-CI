@@ -1,0 +1,18 @@
+---
+- hosts: all
+  become: yes
+    
+  tasks:
+    - name: Download CLI jar
+      get_url: 
+        url:  "http://127.0.0.1:8080/jnlpJars/jenkins-cli.jar"
+        dest: "/opt/jenkins-cli.jar"
+       
+    - name: Get job my-maven-java-project
+      shell: "java -jar /opt/jenkins-cli.jar -s http://127.0.0.1:8080/  -auth admin:admin get-job my-maven-java-project > /vagrant/my-maven-java-project.xml"
+
+      
+  #  - name: "Copying a file for maven settings"
+  #    copy:
+  #      src: ./hudson.tasks.Maven.xml
+  #      dest: /var/lib/jenkins/
