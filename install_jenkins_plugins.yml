@@ -26,10 +26,6 @@
   shell: "java -jar /opt/jenkins-cli.jar -s http://127.0.0.1:8080/  -auth admin:admin install-plugin warnings-ng"
 
 
-- name: Install Plugin configuration-as-code 
-  shell: "java -jar /opt/jenkins-cli.jar -s http://127.0.0.1:8080/  -auth admin:admin install-plugin configuration-as-code"  
-
-
 - name: Install Plugin Git
   shell: "java -jar /opt/jenkins-cli.jar -s http://127.0.0.1:8080/  -auth admin:admin install-plugin git  -restart "
 

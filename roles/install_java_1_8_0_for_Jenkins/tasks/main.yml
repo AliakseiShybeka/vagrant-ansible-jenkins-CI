@@ -21,11 +21,6 @@
     
     - name: "Include install_maven.yml"
       include: install_maven.yml  
- 
-        
-    # - name: "Include install_git_plugin"
-    #   include: install_git_plugin.yml
-
 
     - name: Just force systemd to reread configs 
       systemd:
@@ -49,11 +44,7 @@
       apt:
         name: "default-jdk"
         state: 'latest'
-    
-    
-          
-    
-    
+
     - name: Just force systemd to reread configs 
       systemd:
         daemon_reload: yes
