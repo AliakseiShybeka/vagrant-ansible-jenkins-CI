@@ -18,12 +18,24 @@
 
 - name: "Copying a file for environment variables setting"
   copy:
-   src: ./maven.sh
+   src: ./maven_vars/redhat/maven.sh
    dest: /etc/profile.d/
    mode: "a+x"
+  when: ansible_os_family == 'RedHat'
+
+- name: "Copying a file for environment variables setting"
+  copy:
+   src: ./maven_vars/debian/maven.sh
+   dest: /etc/profile.d/
+   mode: "a+x"
+  when: ansible_os_family == 'Debian'
+
+
    
-- name: "Load environment variables"  
+- name: "Load environment variables!"
   shell:
     cmd: "source /etc/profile.d/maven.sh"
+  args:
+    executable: /bin/bash
 
 

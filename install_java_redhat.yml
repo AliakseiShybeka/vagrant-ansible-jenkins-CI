@@ -1,0 +1,16 @@
+---
+# tasks file for install Java 1.8.0 to RedHat systems
+
+- name: Yum Upgrade all packages
+  yum:
+    name: '*'
+    state: 'latest'
+
+- name: install java-1.8.0-openjdk-devel
+  yum: 
+    name: "java-1.8.0-openjdk-devel"
+    state: 'latest'
+
+- name: Just force systemd to reread configs 
+  systemd:
+    daemon_reload: yes

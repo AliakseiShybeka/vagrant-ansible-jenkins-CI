@@ -2,11 +2,37 @@
 - hosts: all
   become: yes
   
+  tasks:
+
+    # Install Java 
+    - name: "install_java for redhat"
+      include_tasks: install_java_redhat.yml
+      when: ansible_os_family == 'RedHat'
+
+    - name: "install java for debian"
+      include_tasks: install_java_debian.yml
+      when: ansible_os_family == 'Debian'
+
+    # Install Git
+    - name: "Include install_git for RedHat"
+      include_tasks: "install_git_RedHat.yml"
+      when: ansible_os_family == 'RedHat'
+
+    # Install Maven 3.6.3
+    - name: "Include install maven 3.6.3"
+      include: install_maven.yml
+
+# Next Play : install jenkins Role
+- hosts: all
+  become: yes
+
   roles:
-  - { role: install_java_1_8_0_for_Jenkins, when: ansible_system == 'Linux'}
   - { role: geerlingguy.jenkins, when: ansible_system == 'Linux'}
 
+# Next Play install jenkins plugins and our job
+- hosts: all
+  become: yes
+
   tasks:
-  
-   - name: "Include install_jenkins_plugins"
-     include: install_jenkins_plugins.yml
+    - name: "Include install_jenkins_plugins"
+      include: install_jenkins_plugins.yml

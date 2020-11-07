@@ -60,3 +60,10 @@
   until: plugin_result is success
   retries: 3
   delay: 2
+
+# - name: Install plugin
+#   jenkins_plugin:
+#     name: Git
+#     with_dependencies: yes
+#     url_username: "admin"
+#     url_password: 

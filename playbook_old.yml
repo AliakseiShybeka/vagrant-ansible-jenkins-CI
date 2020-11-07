@@ -1,0 +1,12 @@
+---
+- hosts: all
+  become: yes
+  
+  roles:
+  - { role: install_java_1_8_0_for_Jenkins, when: ansible_system == 'Linux'}
+  - { role: geerlingguy.jenkins, when: ansible_system == 'Linux'}
+
+  tasks:
+  
+   - name: "Include install_jenkins_plugins"
+     include: install_jenkins_plugins.yml

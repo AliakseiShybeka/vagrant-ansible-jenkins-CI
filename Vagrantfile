@@ -18,7 +18,7 @@ Vagrant.configure("2") do |config|
     app.vm.network :private_network, ip: "192.168.60.4"
   end
 
-       # Application server 3
+       # Application server 2
    config.vm.define "db" do |db|
      db.vm.hostname = "orc-db.dev"
      db.vm.box = "hashicorp/bionic64"
